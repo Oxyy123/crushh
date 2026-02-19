@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        /* Particles Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 192, 203, 0.6);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Heart Animation */
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            color: #ff6b9d;
+            animation: floatUp 4s ease-in infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 50px;
+            animation: fadeInDown 2s ease-out;
+        }
+
+        .header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #e0e0e0;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Love Letter Card */
+        .love-letter {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateX(5deg);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            animation: fadeInUp 2s ease-out 0.5s both;
+        }
+
+        .love-letter:hover {
+            transform: perspective(1000px) rotateX(0deg) translateY(-10px);
+            box-shadow: 0 30px 80px rgba(255, 107, 157, 0.2);
+        }
+
+        .love-letter h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff6b9d;
+            margin-bottom: 20px;
+        }
+
+        .love-letter p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #f0f0f0;
+            text-align: justify;
+            text-indent: 2em;
+        }
+
+        /* Photo Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            animation: fadeInUp 2s ease-out 1s both;
+        }
+
+        .photo-frame {
+            position: relative;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .photo-frame::before {
+            content: '🖼️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            opacity: 0.5;
+        }
+
+        .photo-frame .placeholder-text {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 0.9rem;
+            padding: 0 10px;
+        }
+
+        /* Interactive Buttons */
+        .button-container {
+            margin: 40px 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 2s ease-out 1.5s both;
+        }
+
+        .romantic-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-family: 'Playfair Display', serif;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ff6b9d;
+            border: 2px solid #ff6b9d;
+        }
+
+        .btn-secondary:hover {
+            background: #ff6b9d;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Hidden Message */
+        .hidden-message {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(196, 69, 105, 0.2));
+            border-radius: 20px;
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .hidden-message.show {
+            display: block;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 157, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 107, 157, 0.6); }
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 50px 0;
+            position: relative;
+            animation: fadeInUp 2s ease-out 2s both;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff6b9d, #c44569);
+        }
+
+        .timeline-item {
+            margin: 30px 0;
+            position: relative;
+            width: 50%;
+            padding: 0 30px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .timeline-content::after {
+            content: '❤️';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            background: #1a1a2e;
+            border: 2px solid #ff6b9d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -45px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -45px;
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 100;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .music-player:hover {
+            background: rgba(255, 107, 157, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .music-icon {
+            font-size: 1.5rem;
+            animation: rotate 3s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .music-icon.playing {
+            animation-play-state: running;
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .music-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #ff6b9d;
+        }
+
+        .music-artist {
+            font-size: 0.7rem;
+            color: #ccc;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 101;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b9d, #c44569);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 80px;
+                text-align: left !important;
+            }
+            
+            .timeline-content::after {
+                left: -60px !important;
+            }
+
+            .music-player {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+            }
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #ff6b9d;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            max-width: fit-content;
+            margin: 0 auto;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #ff6b9d; }
+        }
+
+        /* Lyrics Display */
+        .lyrics-display {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-style: italic;
+            color: #ff6b9d;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 99;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .lyrics-display.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Particles -->
+    <div id="particles"></div>
+
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container"></div>
+
+    <!-- YouTube Music (Hidden) - Perfect by Ed Sheeran -->
+    <iframe 
+        id="youtubePlayer"
+        width="0" 
+        height="0" 
+        src="" 
+        frameborder="0" 
+        allow="autoplay; encrypted-media"
+        style="position: absolute; opacity: 0; pointer-events: none;">
+    </iframe>
+
+    <!-- Lyrics Display -->
+    <div id="lyricsDisplay" class="lyrics-display">
+        "Darling, you look perfect tonight..."
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Untuk Kamu</h1>
+            <p class="subtitle typewriter">Seseorang yang spesial di hatiku...</p>
+        </div>
+
+        <!-- Love Letter -->
+        <div class="love-letter">
+            <h2>Surat Cinta</h2>
+            <p>
+                Setiap hari bersamamu adalah anugerah yang tak ternilai. Senyummu adalah cahaya yang menerangi hariku, 
+                dan tawamu adalah musik indah yang ingin kudengar selamanya. Aku bersyukur bisa mengenalmu, 
+                dan aku ingin terus menulis cerita indah bersamamu. Kamu adalah alasan aku tersenyum, 
+                dan aku berharap bisa menjadi alasan kamu tersenyum juga. ❤️
+            </p>
+        </div>
+
+        <!-- Photo Gallery -->
+        <div class="gallery">
+            <div class="photo-frame" onclick="addPhoto(this)">
+                <div class="placeholder-text">Klik untuk menambahkan foto kenangan 1</div>
+            </div>
+            <div class="photo-frame" onclick="addPhoto(this)">
+                <div class="placeholder-text">Klik untuk menambahkan foto kenangan 2</div>
+            </div>
+            <div class="photo-frame" onclick="addPhoto(this)">
+                <div class="placeholder-text">Klik untuk menambahkan foto kenangan 3</div>
+            </div>
+        </div>
+
+        <!-- Interactive Buttons -->
+        <div class="button-container">
+            <button class="romantic-btn btn-primary" onclick="revealMessage()">💌 Buka Pesan Rahasia</button>
+            <button class="romantic-btn btn-secondary" onclick="createFireworks()">🎆 Kejutan</button>
+        </div>
+
+        <!-- Hidden Message -->
+        <div id="secretMessage" class="hidden-message">
+            <h3 style="font-family: 'Dancing Script', cursive; font-size: 2rem; color: #ff6b9d; margin-bottom: 15px;">
+                Aku Sayang Kamu
+            </h3>
+            <p>
+                Dari semua bintang di langit, aku bersyukur bertemu denganmu. 
+                Kamu adalah mimpi yang menjadi kenyataan, dan aku berjanji akan selalu ada untukmu. 
+                Bisakah kamu memberiku kesempatan untuk membuatmu bahagia? 💕
+            </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline">
+            <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #ff6b9d; margin-bottom: 30px;">
+                Momen Spesial Kita
+            </h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Pertama Bertemu</h4>
+                    <p>Hari dimana segalanya dimulai...</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Chat Pertama</h4>
+                    <p>Saat kita mulai saling mengenal...</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Momen Berharga</h4>
+                    <p>Kenangan indah yang tak terlupakan...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" onclick="toggleMusic()">
+        <span class="music-icon" id="musicIcon">🎵</span>
+        <div class="music-info">
+            <span class="music-title" id="musicTitle">Perfect</span>
+            <span class="music-artist" id="musicText">Ed Sheeran • Putar Musik</span>
+        </div>
+    </div>
+
+    <script>
+        // Music State
+        let isPlaying = false;
+        let musicStarted = false;
+        const youtubeId = '2Vv-BfVoq4g'; // Perfect - Ed Sheeran
+        
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Create floating hearts
+        function createHeart() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 4 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            container.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Toggle Music
+        function toggleMusic() {
+            const player = document.getElementById('youtubePlayer');
+            const icon = document.getElementById('musicIcon');
+            const title = document.getElementById('musicTitle');
+            const text = document.getElementById('musicText');
+            const lyrics = document.getElementById('lyricsDisplay');
+            
+            if (!musicStarted) {
+                // First time playing - load YouTube
+                player.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&loop=1&playlist=${youtubeId}&enablejsapi=1`;
+                musicStarted = true;
+                isPlaying = true;
+                
+                // Update UI
+                icon.classList.add('playing');
+                text.textContent = 'Sedang Diputar ♪';
+                lyrics.classList.add('show');
+                
+                // Simulate progress bar (since we can't get actual time from iframe)
+                simulateProgress();
+                
+                // Show lyrics periodically
+                showLyrics();
+            } else {
+                if (isPlaying) {
+                    // Pause (reload without autoplay)
+                    player.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=0&loop=1&playlist=${youtubeId}`;
+                    isPlaying = false;
+                    icon.classList.remove('playing');
+                    text.textContent = 'Ed Sheeran • Dijeda';
+                    lyrics.classList.remove('show');
+                } else {
+                    // Play
+                    player.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&loop=1&playlist=${youtubeId}`;
+                    isPlaying = true;
+                    icon.classList.add('playing');
+                    text.textContent = 'Sedang Diputar ♪';
+                    lyrics.classList.add('show');
+                    simulateProgress();
+                }
+            }
+        }
+
+        // Simulate progress bar
+        function simulateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            let width = 0;
+            const duration = 263; // Perfect duration in seconds (4:23)
+            const interval = 1000;
+            
+            const progressInterval = setInterval(() => {
+                if (!isPlaying) {
+                    clearInterval(progressInterval);
+                    return;
+                }
+                width += (100 / duration);
+                if (width >= 100) width = 0;
+                progressBar.style.width = width + '%';
+            }, interval);
+        }
+
+        // Show lyrics at intervals
+        const lyrics = [
+            "I found a love for me...",
+            "Darling, just dive right in...",
+            "Well, I found a girl...",
+            "Beautiful and sweet...",
+            "I never knew you were the someone waiting for me...",
+            "'Cause we were just kids when we fell in love...",
+            "Darling, you look perfect tonight..."
+        ];
+        
+        let lyricIndex = 0;
+        function showLyrics() {
+            if (!isPlaying) return;
+            
+            const lyricsDisplay = document.getElementById('lyricsDisplay');
+            lyricsDisplay.textContent = `"${lyrics[lyricIndex]}"`;
+            lyricsDisplay.classList.add('show');
+            
+            lyricIndex = (lyricIndex + 1) % lyrics.length;
+            
+            setTimeout(() => {
+                if (isPlaying) showLyrics();
+            }, 8000); // Change lyrics every 8 seconds
+        }
+
+        // Reveal hidden message
+        function revealMessage() {
+            const message = document.getElementById('secretMessage');
+            message.classList.toggle('show');
+            if (message.classList.contains('show')) {
+                createFireworks();
+            }
+        }
+
+        // Create fireworks effect
+        function createFireworks() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = ['❤️', '💖', '💕', '💗', '💝'][Math.floor(Math.random() * 5)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = '50%';
+                    heart.style.fontSize = '2rem';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1000';
+                    heart.style.animation = 'explode 1s ease-out forwards';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 1000);
+                }, i * 50);
+            }
+        }
+
+        // Add explosion animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes explode {
+                0% { transform: scale(0) translate(0, 0); opacity: 1; }
+                100% { transform: scale(2) translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Photo placeholder
+        function addPhoto(element) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        element.style.background = `url(${event.target.result}) center/cover`;
+                        element.innerHTML = '';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        // Initialize
+        window.onload = function() {
+            createParticles();
+            setInterval(createHeart, 1000);
+            
+            // Parallax effect on mouse move
+            document.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth - e.pageX) / 50;
+                const y = (window.innerHeight - e.pageY) / 50;
+                
+                document.querySelectorAll('.love-letter, .photo-frame').forEach(el => {
+                    el.style.transform = `perspective(1000px) rotateX(0deg) translate(${x}px, ${y}px)`;
+                });
+            });
+        };
+
+        // Add custom cursor hearts on click
+        document.addEventListener('click', (e) => {
+            // Don't trigger if clicking music player
+            if (e.target.closest('.music-player')) return;
+            
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9999';
+            heart.style.animation = 'floatUp 2s ease-out forwards';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 2000);
+        });
+    </script>
+</body>
+</html>
